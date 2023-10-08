@@ -5,7 +5,7 @@ import React from "react";
 function Navbar() {
   const navIcons = [
     { src: "/assets/icons/add.svg", alt: "Add Project", href: "/add-project" },
-    { src: "/assets/icons/user.svg", alt: "User Profile", href: "/profile" },
+    { src: "/assets/icons/user.svg", alt: "User Profile", href: "/" },
   ];
 
   return (

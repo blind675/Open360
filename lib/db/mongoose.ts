@@ -22,6 +22,8 @@ export const connectToDatabase = async () => {
     console.log("=> using new database connection");
     const db = await mongoose.connect(String(process.env.MONGO_DB_URI));
     isConnected = true;
+
+    return;
   } catch (error: any) {
     throw new Error(error);
   }

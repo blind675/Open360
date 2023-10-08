@@ -9,7 +9,8 @@ type ProjectCardProps = {
 function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
-      href={`/project/${project._id}`}
+      // href={`/project/${project._id}`}
+      href={"/"}
       className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
     >
       <Image

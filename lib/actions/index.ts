@@ -25,13 +25,15 @@ export async function scrapeAndStoreProject(projectURL?: string) {
     }
   );
 
-  await revalidatePath(`/projects/${newOrUpdatedProject._id}`);
+  await revalidatePath("/");
+  // await revalidatePath(`/projects/${newOrUpdatedProject._id}`);
 }
 
 export async function getAllProjects() {
   try {
     await connectToDatabase();
 
+    console.log("Getting all projects...");
     const projects = await Project.find();
     return projects;
   } catch (error: any) {
@@ -49,6 +51,7 @@ export async function getProjectById(id?: string) {
   try {
     await connectToDatabase();
 
+    console.log("Getting project by id");
     const project = await Project.findById(id);
     return project;
   } catch (error: any) {
