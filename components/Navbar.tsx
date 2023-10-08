@@ -4,7 +4,8 @@ import React from "react";
 
 function Navbar() {
   const navIcons = [
-    { src: "/assets/icons/user.svg", alt: "user", href: "/profile" },
+    { src: "/assets/icons/add.svg", alt: "Add Project", href: "/add-project" },
+    { src: "/assets/icons/user.svg", alt: "User Profile", href: "/profile" },
   ];
 
   return (
@@ -13,7 +14,7 @@ function Navbar() {
         <Link href="/" className="flex items-center gap-1">
           <Image src="/assets/logo.svg" width={36} height={36} alt="logo" />
 
-          <p className="ml-2 text-2xl font-bold">
+          <p className="ml-2 text-2xl font-bold text-black">
             Open <span className="text-primary">360</span>
           </p>
         </Link>

@@ -24,9 +24,9 @@ function Searchbox() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m1 1 4 4 4-4"
               />
             </svg>
@@ -41,16 +41,18 @@ function Searchbox() {
                 <button
                   type="button"
                   className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => toggleDropdown(false)}
                 >
-                  Logos
+                  Category 1
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => toggleDropdown(false)}
                 >
-                  Mockups
+                  Category 1
                 </button>
               </li>
             </ul>
@@ -66,7 +68,7 @@ function Searchbox() {
           />
           <button
             type="submit"
-            className="absolute top-[1px] right-0 p-2.5 text-sm font-medium  text-white bg-primary rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="absolute top-[1px] right-[1px] p-2.5 text-sm font-medium  text-white bg-primary rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             <svg
               className="w-4 h-4"
@@ -77,9 +79,9 @@ function Searchbox() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
