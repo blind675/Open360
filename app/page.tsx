@@ -8,11 +8,11 @@ const Home = async () => {
 
   return (
     <>
-      <section className="px-6 md:px-20 py-24 ">
+      <section className="px-6 py-24 ">
         <Searchbox />
       </section>
-      <section className="px-6 md:px-20 py-8">
-        <div className="flex flex-wrap gap-x-8 gap-y-16">
+      <section className="py-8 flex justify-center ">
+        <div className="flex flex-wrap gap-x-8 gap-y-16 xl:w-[1221px] lg:w-[805px] w-[370px] ">
           {allProjects?.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

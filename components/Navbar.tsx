@@ -9,7 +9,7 @@ function Navbar() {
   ];
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-white fixed border-b-2 z-10">
       <nav className="p-4 flex justify-between">
         <Link href="/" className="flex items-center gap-1">
           <Image src="/assets/logo.svg" width={36} height={36} alt="logo" />

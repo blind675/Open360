@@ -17,7 +17,7 @@ export async function scrapeProject(url: string) {
     const page = await browser.newPage();
     await page.goto(url, { timeout: 2 * 60 * 1000 });
     console.log("Navigated! Wait for page to load...");
-    await timeout(2000);
+    await timeout(1000);
     console.log("Loaded! Scraping page content...");
     const htmlContent = await page.content();
     const $ = cheerio.load(htmlContent);
