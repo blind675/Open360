@@ -1,14 +1,11 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import Project from "../db/models/project.model";
 import { connectToDatabase } from "../db/mongoose";
 import { scrapeProject } from "../scraper";
 
-export const runtime = "edge";
-export const maxDuration = 60;
-
 export async function scrapeAndStoreProject(projectURL?: string) {
-  "use server";
-
   if (!projectURL) {
     return;
   }
