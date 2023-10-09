@@ -4,8 +4,6 @@ import { isURLValid } from "@/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export const runtime = "edge";
-
 function AddProjectPage() {
   const [projectURL, setProjectURL] = React.useState("");
   const [URLError, setURLError] = React.useState<string | null>(null);
