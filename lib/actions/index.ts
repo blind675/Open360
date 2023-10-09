@@ -4,6 +4,7 @@ import { connectToDatabase } from "../db/mongoose";
 import { scrapeProject } from "../scraper";
 
 export const runtime = "edge";
+export const maxDuration = 60;
 
 export async function scrapeAndStoreProject(projectURL?: string) {
   "use server";
