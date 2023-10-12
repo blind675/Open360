@@ -33,5 +33,5 @@ export async function POST(request: Request) {
 
   await revalidatePath("/");
 
-  redirect("https://nextjs.org/");
+  redirect("/");
 }
