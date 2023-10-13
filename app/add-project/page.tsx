@@ -51,7 +51,9 @@ function AddProjectPage() {
             value={projectURL}
             onChange={(e) => {
               setProjectURL(e.target.value);
-              setURLError(null);
+              if (e.target.value.length > 0) {
+                setURLError(null);
+              }
             }}
           />
           <button

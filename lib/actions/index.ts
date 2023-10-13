@@ -1,31 +1,21 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import axios from "axios";
 import Project from "../db/models/project.model";
 import { connectToDatabase } from "../db/mongoose";
-import { scrapeProject } from "../scraper";
 
 export async function scrapeAndStoreProject(projectURL?: string) {
   if (!projectURL) {
     return;
   }
 
-  const scrapedProject = await scrapeProject(projectURL);
+  const response = await axios.post(process.env.API_BASE_URL + "/scraper", {
+    url: projectURL,
+  });
+  console.log(response.data);
 
-  console.log("Connecting to database...");
-  await connectToDatabase();
-
-  console.log("Saving or updating project...");
-  const newOrUpdatedProject = await Project.findOneAndUpdate(
-    { url: scrapedProject.url },
-    scrapedProject,
-    {
-      upsert: true,
-      new: true,
-    }
-  );
-
-  await revalidatePath("/");
+  revalidatePath("/");
   // await revalidatePath(`/projects/${newOrUpdatedProject._id}`);
 }
 
