@@ -3,6 +3,8 @@ import Searchbox from "@/components/Searchbox";
 import { getAllProjects } from "@/lib/actions";
 import React from "react";
 
+export const revalidate = 60 * 60; // 1 hour
+
 const Home = async () => {
   const allProjects = await getAllProjects();
 

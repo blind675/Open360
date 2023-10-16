@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import axios from "axios";
 import Project from "../db/models/project.model";
 import { connectToDatabase } from "../db/mongoose";
@@ -15,7 +14,6 @@ export async function scrapeAndStoreProject(projectURL?: string) {
   });
   console.log(response.data);
 
-  revalidatePath("/");
   // await revalidatePath(`/projects/${newOrUpdatedProject._id}`);
 }
 
@@ -24,7 +22,7 @@ export async function getAllProjects() {
     await connectToDatabase();
 
     console.log("Getting all projects...");
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ createdAt: -1 });
     return projects;
   } catch (error: any) {
     console.log(error);

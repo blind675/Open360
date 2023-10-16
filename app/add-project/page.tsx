@@ -1,8 +1,10 @@
 "use client";
-import { scrapeAndStoreProject } from "@/lib/actions";
-import { isURLValid } from "@/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { scrapeAndStoreProject } from "@/lib/actions";
+import { isURLValid } from "@/utils";
 
 function AddProjectPage() {
   const [projectURL, setProjectURL] = React.useState("");
@@ -10,6 +12,8 @@ function AddProjectPage() {
   const [isLoading, setLoading] = React.useState(false);
 
   const router = useRouter();
+
+  const toastClosePopupCount = React.useRef(0);
 
   async function addProject() {
     console.log(projectURL);
@@ -25,16 +29,30 @@ function AddProjectPage() {
       setLoading(true);
 
       // Scrape the project from the URL
-      await scrapeAndStoreProject(projectURL);
+      scrapeAndStoreProject(projectURL);
     } catch (error) {
       console.error(error);
 
+      toast.error("Something went wrong. Please try again later.");
       return;
     } finally {
       setLoading(false);
     }
 
-    router.push("/", { scroll: false });
+    toast.success("URL will be scraped soon. Going back to the main page", {
+      onClose: () => {
+        if (process.env.NODE_ENV === "development") {
+          toastClosePopupCount.current += 1;
+          if (toastClosePopupCount.current > 1) {
+            router.push("/", { scroll: false });
+            return;
+          }
+        } else {
+          router.push("/", { scroll: false });
+          return;
+        }
+      },
+    });
   }
 
   return (
@@ -75,6 +93,7 @@ function AddProjectPage() {
             : "At the moment we only support URLs from zooniverse.org."}
         </p>
       </section>
+      <ToastContainer />
     </>
   );
 }
