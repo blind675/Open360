@@ -3,6 +3,7 @@
 import axios from "axios";
 import Project from "../db/models/project.model";
 import { connectToDatabase } from "../db/mongoose";
+import { IProject } from "@/types";
 
 export async function scrapeAndStoreProject(projectURL?: string) {
   if (!projectURL) {
@@ -23,7 +24,11 @@ export async function getAllProjects() {
 
     console.log("Getting all projects...");
     const projects = await Project.find().sort({ createdAt: -1 });
-    return projects;
+
+    return projects.map((project: IProject) => ({
+      ...project._doc,
+      _id: project._id.toString(),
+    }));
   } catch (error: any) {
     console.log(error);
 

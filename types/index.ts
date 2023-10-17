@@ -1,4 +1,9 @@
-export type Project = {
+export interface DocumentResult<T> {
+  _doc: T;
+  $isNew: boolean;
+}
+
+export interface IProject extends DocumentResult<IProject> {
   _id: string;
   url: string;
   title: string;
@@ -9,4 +14,4 @@ export type Project = {
   progress: string;
   createdAt: Date;
   updatedAt: Date;
-};
+}
