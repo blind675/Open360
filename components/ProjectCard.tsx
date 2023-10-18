@@ -1,17 +1,19 @@
-import { Project } from "@/types";
+import { IProject } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 type ProjectCardProps = {
-  project: Project;
+  project: IProject;
+  id: string;
 };
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, id }: ProjectCardProps) {
   return (
     <Link
       // href={`/project/${project._id}`}
       href={"/"}
       className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      id={id}
     >
       <Image
         className="rounded-t-lg"

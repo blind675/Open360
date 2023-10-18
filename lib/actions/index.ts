@@ -18,21 +18,21 @@ export async function scrapeAndStoreProject(projectURL?: string) {
   // await revalidatePath(`/projects/${newOrUpdatedProject._id}`);
 }
 
-export async function getAllProjects() {
+export async function getAllProjects(limit: number = 10) {
   try {
     await connectToDatabase();
 
     console.log("Getting all projects...");
-    const projects = await Project.find().sort({ createdAt: -1 });
+    const projects = await Project.find().sort({ createdAt: -1 }).limit(limit);
 
     return projects.map((project: IProject) => ({
       ...project._doc,
       _id: project._id.toString(),
-    }));
+    })) as IProject[];
   } catch (error: any) {
     console.log(error);
 
-    return null;
+    return [];
   }
 }
 
