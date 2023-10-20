@@ -4,11 +4,11 @@ import { IProject } from "@/types";
 import Searchbox from "./Searchbox";
 import ProjectCard from "./ProjectCard";
 
-type MainPageProps = {
+type HomeContentProps = {
   projects: IProject[];
 };
 
-function MainPage({ projects }: MainPageProps) {
+function HomeContent({ projects }: HomeContentProps) {
   const [filteredProjects, setFilteredProjects] = React.useState(projects);
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -41,4 +41,4 @@ function MainPage({ projects }: MainPageProps) {
   );
 }
 
-export default MainPage;
+export default HomeContent;

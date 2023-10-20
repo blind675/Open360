@@ -10,12 +10,9 @@ export async function scrapeAndStoreProject(projectURL?: string) {
     return;
   }
 
-  const response = await axios.post(process.env.API_BASE_URL + "/scraper", {
+  await axios.post(process.env.API_BASE_URL + "/scraper", {
     url: projectURL,
   });
-  console.log(response.data);
-
-  // await revalidatePath(`/projects/${newOrUpdatedProject._id}`);
 }
 
 export async function getAllProjects(limit: number = 10) {
@@ -46,7 +43,7 @@ export async function getProjectById(id?: string) {
 
     console.log("Getting project by id");
     const project = await Project.findById(id);
-    return project;
+    return project as IProject;
   } catch (error: any) {
     console.log(error);
 

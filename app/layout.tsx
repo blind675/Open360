@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={false}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <main className="max-w-10xl mx-auto bg-slate-200">
           <Navbar />
           {children}
