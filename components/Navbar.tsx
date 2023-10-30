@@ -1,11 +1,19 @@
+import { authConfig } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-function Navbar() {
+async function Navbar() {
+  const session = await getServerSession(authConfig);
+  const user = session?.user;
+
   const navIcons = [
     { src: "/assets/icons/add.svg", alt: "Add Project", href: "/add-project" },
-    { src: "/assets/icons/user.svg", alt: "User Profile", href: "/" },
+    {
+      src: user?.image ? user.image : "/assets/icons/user.svg",
+      alt: "User Profile",
+      href: user ? "/profile" : "/api/auth/signin",
+    },
   ];
 
   return (

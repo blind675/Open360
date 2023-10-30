@@ -15,3 +15,12 @@ export interface IProject extends DocumentResult<IProject> {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IUser extends DocumentResult<IUser> {
+  _id: string;
+  email: string;
+  name: string;
+  imageURL?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}

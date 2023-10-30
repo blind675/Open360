@@ -1,6 +1,8 @@
 import { getProjectById } from "@/lib/actions";
+import { authConfig } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import Image from "next/image";
-import React from "react";
 
 type ProjectPageProps = {
   params: {
@@ -10,11 +12,23 @@ type ProjectPageProps = {
 
 async function ProjectPage({ params }: ProjectPageProps) {
   const project = await getProjectById(params.projectId);
+  const session = await getServerSession(authConfig);
+  const user = session?.user;
 
-  async function handleFollowProject(formData: FormData) {
+  async function handleFollowProject() {
     "use server";
 
-    console.log("TODO: Follow project");
+    if (user) {
+      console.log(
+        "TODO: Follow project for user email:",
+        user?.email,
+        "and url:",
+        project?.url
+      );
+      redirect("/");
+    } else {
+      redirect("/api/auth/signin");
+    }
   }
 
   return (
@@ -50,7 +64,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
           className="bg-transparent hover:bg-primary text-primary font-semibold hover:text-white py-2 px-4 
                            border border-primary hover:border-transparent rounded active:text-blue-500 active:border-blue-500 "
         >
-          Follow Project
+          {user ? "Sign In To Follow Project" : "Follow Project"}
         </button>
       </form>
     </>

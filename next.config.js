@@ -6,7 +6,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ["panoptes-uploads.zooniverse.org"],
+    domains: ["panoptes-uploads.zooniverse.org", "lh3.googleusercontent.com"],
   },
 };
 

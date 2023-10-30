@@ -3,7 +3,8 @@
 import axios from "axios";
 import Project from "../db/models/project.model";
 import { connectToDatabase } from "../db/mongoose";
-import { IProject } from "@/types";
+import { IProject, IUser } from "@/types";
+import User from "../db/models/user.model";
 
 export async function scrapeAndStoreProject(projectURL?: string) {
   if (!projectURL) {
@@ -44,6 +45,29 @@ export async function getProjectById(id?: string) {
     console.log("Getting project by id");
     const project = await Project.findById(id);
     return project as IProject;
+  } catch (error: any) {
+    console.log(error);
+
+    return null;
+  }
+}
+
+export async function createUser(
+  email: string,
+  name: string,
+  imageURL?: string
+) {
+  try {
+    await connectToDatabase();
+
+    console.log("Creating user...");
+    const newUser = await User.create({
+      email,
+      name,
+      imageURL,
+    });
+
+    return newUser as IUser;
   } catch (error: any) {
     console.log(error);
 
