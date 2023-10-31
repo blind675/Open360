@@ -13,7 +13,6 @@ export const authConfig: NextAuthOptions = {
     async signIn({ user, account }) {
       if (account?.provider === "google" && user?.email && user?.name) {
         await createUser(user.email, user.name, user.image || undefined);
-        console.log(" new user sign in:", user);
       }
       return true;
     },

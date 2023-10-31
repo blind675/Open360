@@ -12,6 +12,8 @@ export interface IProject extends DocumentResult<IProject> {
   tagLine: string;
   backgroundImg: string;
   progress: string;
+  followersEmails?: String[];
+  lastUpdatedAt?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,6 +22,7 @@ export interface IUser extends DocumentResult<IUser> {
   _id: string;
   email: string;
   name: string;
+  followingProjectIDs?: String[];
   imageURL?: string;
   createdAt: Date;
   updatedAt: Date;

@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ["puppeteer-core", "mongoose"],
+    serverComponentsExternalPackages: ["mongoose"],
   },
   reactStrictMode: true,
   images: {

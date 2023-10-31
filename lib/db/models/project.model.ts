@@ -9,6 +9,12 @@ const projectSchema = new mongoose.Schema(
     description: { type: String, required: true },
     backgroundImg: { type: String, required: false },
     progress: { type: String, required: true },
+    followersEmails: [
+      {
+        type: String,
+      },
+    ],
+    lastUpdatedAt: { type: Date, required: false },
   },
   { timestamps: true }
 );

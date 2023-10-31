@@ -23,10 +23,12 @@ export async function getAllProjects(limit: number = 10) {
     console.log("Getting all projects...");
     const projects = await Project.find().sort({ createdAt: -1 }).limit(limit);
 
-    return projects.map((project: IProject) => ({
-      ...project._doc,
-      _id: project._id.toString(),
-    })) as IProject[];
+    return projects.map((project: IProject) => {
+      return {
+        ...project._doc,
+        _id: project._id.toString(),
+      } as IProject;
+    });
   } catch (error: any) {
     console.log(error);
 
@@ -44,7 +46,11 @@ export async function getProjectById(id?: string) {
 
     console.log("Getting project by id");
     const project = await Project.findById(id);
-    return project as IProject;
+
+    return {
+      ...project._doc,
+      _id: project._id.toString(),
+    } as IProject;
   } catch (error: any) {
     console.log(error);
 
@@ -65,6 +71,7 @@ export async function createUser(
       email,
       name,
       imageURL,
+      followingProjectIDs: [],
     });
 
     return newUser as IUser;
@@ -72,5 +79,44 @@ export async function createUser(
     console.log(error);
 
     return null;
+  }
+}
+
+export async function userWithEmailFollowProject(
+  userEmail?: string | null,
+  project?: IProject
+) {
+  if (!userEmail || !project) {
+    return false;
+  }
+
+  try {
+    await connectToDatabase();
+
+    console.log("Follow project...");
+
+    const productUpdateRes = await Project.updateOne(
+      { _id: project._id },
+      {
+        $push: {
+          followersEmails: userEmail,
+        },
+      }
+    );
+
+    await User.updateOne(
+      { email: userEmail },
+      {
+        $push: {
+          followingProjectIDs: project._id,
+        },
+      }
+    );
+
+    return true;
+  } catch (error: any) {
+    console.log(error);
+
+    return false;
   }
 }

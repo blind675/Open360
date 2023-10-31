@@ -1,4 +1,4 @@
-import { getProjectById } from "@/lib/actions";
+import { userWithEmailFollowProject, getProjectById } from "@/lib/actions";
 import { authConfig } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -18,13 +18,8 @@ async function ProjectPage({ params }: ProjectPageProps) {
   async function handleFollowProject() {
     "use server";
 
-    if (user) {
-      console.log(
-        "TODO: Follow project for user email:",
-        user?.email,
-        "and url:",
-        project?.url
-      );
+    if (user && project) {
+      await userWithEmailFollowProject(user?.email, project);
       redirect("/");
     } else {
       redirect("/api/auth/signin");
@@ -58,15 +53,24 @@ async function ProjectPage({ params }: ProjectPageProps) {
       <p className="p-10 text-black text-center text-lg">
         {project?.description}
       </p>
-      <form className="flex flex-col items-center" action={handleFollowProject}>
-        <button
-          type="submit"
-          className="bg-transparent hover:bg-primary text-primary font-semibold hover:text-white py-2 px-4 
-                           border border-primary hover:border-transparent rounded active:text-blue-500 active:border-blue-500 "
+      {project?.followersEmails?.includes(user?.email || "") ? (
+        <p className=" text-primary font-semibold text-center">
+          You are already following this project
+        </p>
+      ) : (
+        <form
+          className="flex flex-col items-center"
+          action={handleFollowProject}
         >
-          {user ? "Sign In To Follow Project" : "Follow Project"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="bg-transparent hover:bg-primary text-primary font-semibold hover:text-white py-2 px-4 
+                           border border-primary hover:border-transparent rounded active:text-blue-500 active:border-blue-500 "
+          >
+            {user ? "Follow Project" : "Sign In To Follow Project"}
+          </button>
+        </form>
+      )}
     </>
   );
 }
