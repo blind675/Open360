@@ -22,7 +22,7 @@ export interface IUser extends DocumentResult<IUser> {
   _id: string;
   email: string;
   name: string;
-  followingProjectIDs?: String[];
+  followingProjectIDs?: string[];
   imageURL?: string;
   createdAt: Date;
   updatedAt: Date;

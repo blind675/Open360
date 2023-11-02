@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import { IProject } from "@/types";
 import Searchbox from "./Searchbox";
 import ProjectCard from "./ProjectCard";
