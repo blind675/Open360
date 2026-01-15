@@ -1,10 +1,46 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Project Overview
 
-First, run the development server:
+Open360 is a project discovery web app built with Next.js. It lists projects from a MongoDB database, lets users search by title, and shows project details on a dedicated page. Authenticated users can follow projects, and server actions power the data fetching and follow/unfollow behavior.
+
+## Features
+
+- **Project catalog** with search-by-title filtering.
+- **Project detail pages** with images, descriptions, and follow status.
+- **Google authentication** via NextAuth.
+- **MongoDB-backed** data storage using Mongoose models.
+- **Scraper integration** to ingest project data via an external API.
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **UI:** React 18 + Tailwind CSS
+- **Auth:** NextAuth (Google provider)
+- **Database:** MongoDB (Mongoose)
+
+## Environment Variables
+
+Create a `.env.local` file with the following values:
 
 ```bash
+# MongoDB connection string
+MONGO_DB_URI=
+
+# Google OAuth (NextAuth)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# External scraper service URL
+API_BASE_URL=
+```
+
+## Getting Started
+
+First, install dependencies and run the development server:
+
+```bash
+npm install
 npm run dev
 # or
 yarn dev
@@ -17,6 +53,22 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Common Scripts
+
+```bash
+# Start dev server
+npm run dev
+
+# Production build
+npm run build
+
+# Start production server
+npm run start
+
+# Lint
+npm run lint
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
